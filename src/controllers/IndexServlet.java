@@ -42,7 +42,10 @@ public class IndexServlet extends HttpServlet {
         } catch(NumberFormatException e) {}
 
         // 最大件数と開始位置を指定してメッセージを取得
-        List<Tasklist> tasklist = em.createNamedQuery("getAllTasklist", Tasklist.class).getResultList();
+        List<Tasklist> tasklist = em.createNamedQuery("getAllTasklist", Tasklist.class)
+                .setFirstResult(15 * (page - 1))
+                .setMaxResults(15)
+                .getResultList();
         // 全件数を取得
         long tasklist_count = (long)em.createNamedQuery("getTasklistCount", Long.class)
                                       .getSingleResult();
