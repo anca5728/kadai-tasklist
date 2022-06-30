@@ -6,13 +6,10 @@
     <c:param name="content">
  <c:choose>
             <c:when test="${tasklist != null}">
-        <h2>id : ${tasklist.id} のメッセージ詳細ページ</h2>
+        <h2>id : ${tasklist.id} 詳細ページ</h2>
         <table>
             <tbody>
-                <tr>
-                    <th>タイトル</th>
-                    <td><c:out value="${tasklist.title}" /></td>
-                </tr>
+
                 <tr>
                     <th>メッセージ</th>
                     <td><c:out value="${tasklist.content}" /></td>
@@ -34,7 +31,7 @@
             <a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
         </p>
         <p>
-            <a href="${pageContext.request.contextPath}/edit?id=${tasklist }.id}">このメッセージを編集する</a>
+            <a href="${pageContext.request.contextPath}/edit?id=${tasklist.id}">このメッセージを編集する</a>
         </p>
             </c:when>
             <c:otherwise>

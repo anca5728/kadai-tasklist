@@ -28,6 +28,7 @@ public class UpdateServlet extends HttpServlet {
      */
     public UpdateServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -40,18 +41,15 @@ public class UpdateServlet extends HttpServlet {
 
             // セッションスコープからメッセージのIDを取得して
             // 該当のIDのメッセージ1件のみをデータベースから取得
-            Tasklist m = em.find(Tasklist.class, (Integer)(request.getSession().getAttribute("message_id")));
+            Tasklist m = em.find(Tasklist.class, (Integer)(request.getSession().getAttribute("tasklist_id")));
 
             // フォームの内容を各フィールドに上書き
-            String title = request.getParameter("title");
-            m.setTitle(title);
 
             String content = request.getParameter("content");
             m.setContent(content);
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             m.setUpdated_at(currentTime);       // 更新日時のみ上書き
-
             // バリデーションを実行してエラーがあったら編集画面のフォームに戻る
             List<String> errors = TasklistValidator.validate(m);
             if(errors.size() > 0) {
@@ -65,7 +63,6 @@ public class UpdateServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasklist/edit.jsp");
                 rd.forward(request, response);
             } else {
-
             // データベースを更新
             em.getTransaction().begin();
             em.getTransaction().commit();
@@ -79,5 +76,5 @@ public class UpdateServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/index");
         }
     }
-}
+    }
 }

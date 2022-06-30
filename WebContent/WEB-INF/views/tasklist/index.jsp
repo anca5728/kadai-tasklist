@@ -7,14 +7,14 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>メッセージ一覧</h2>
+        <h2>タスク一覧</h2>
         <ul>
             <c:forEach var="tasklist" items="${tasklist}">
                 <li>
                     <a href="${pageContext.request.contextPath}/show?id=${tasklist.id}">
                         <c:out value="${tasklist.id}" />
                     </a>
-                    ：<c:out value="${tasklist.title}"></c:out> &gt; <c:out value="${tasklist.content}" />
+                     &gt; <c:out value="${tasklist.content}" />
                 </li>
             </c:forEach>
         </ul>
@@ -32,7 +32,7 @@
             </c:forEach>
         </div>
 
-        <p><a href="${pageContext.request.contextPath}/new">新規メッセージの投稿</a></p>
+        <p><a href="${pageContext.request.contextPath}/new">投稿</a></p>
 
     </c:param>
 </c:import>

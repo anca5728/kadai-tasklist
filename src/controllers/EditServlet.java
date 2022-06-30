@@ -25,6 +25,7 @@ public class EditServlet extends HttpServlet {
      */
     public EditServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -42,14 +43,11 @@ public class EditServlet extends HttpServlet {
         request.setAttribute("tasklist", m);
         request.setAttribute("_token", request.getSession().getId());
 
-        // メッセージデータが存在しているときのみ
+        //メッセージデータが存在しているときのみ
         // メッセージIDをセッションスコープに登録
         if(m != null) {
-        }
-
-        // メッセージIDをセッションスコープに登録
         request.getSession().setAttribute("tasklist_id", m.getId());
-
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasklist/edit.jsp");
         rd.forward(request, response);
     }

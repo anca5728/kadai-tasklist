@@ -24,6 +24,7 @@ public class DestroyServlet extends HttpServlet {
      */
     public DestroyServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
     /**
