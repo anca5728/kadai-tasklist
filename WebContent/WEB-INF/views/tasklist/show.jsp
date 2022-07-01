@@ -5,23 +5,23 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
  <c:choose>
-            <c:when test="${tasklist != null}">
+            <c:when test="${task != null}">
         <h2>id : ${tasklist.id} 詳細ページ</h2>
         <table>
             <tbody>
 
                 <tr>
-                    <th>メッセージ</th>
-                    <td><c:out value="${tasklist.content}" /></td>
+                    <th>内容</th>
+                    <td><c:out value="${task.content}" /></td>
                 </tr>
                 <tr>
                     <th>作成日時</th>
-                    <td><fmt:formatDate value="${tasklist.created_at}"
+                    <td><fmt:formatDate value="${task.created_at}"
                             pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
                 <tr>
                     <th>更新日時</th>
-                    <td><fmt:formatDate value="${tasklist.updated_at}"
+                    <td><fmt:formatDate value="${task.updated_at}"
                             pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
             </tbody>
@@ -31,7 +31,7 @@
             <a href="${pageContext.request.contextPath}/index">一覧に戻る</a>
         </p>
         <p>
-            <a href="${pageContext.request.contextPath}/edit?id=${tasklist.id}">このメッセージを編集する</a>
+            <a href="${pageContext.request.contextPath}/edit?id=${task.id}">この内容を編集する</a>
         </p>
             </c:when>
             <c:otherwise>

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Tasklist;
-import models.validators.TasklistValidator;
+import models.Task;
+import models.validators.TaskValidator;
 import utils.DBUtil;
 
 /**
@@ -40,7 +40,7 @@ public class CreateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
             em.getTransaction().begin();
 
-            Tasklist m = new Tasklist();
+            Task m = new Task();
 
 
             String content = request.getParameter("content");
@@ -50,16 +50,16 @@ public class CreateServlet extends HttpServlet {
             m.setCreated_at(currentTime);
             m.setUpdated_at(currentTime);
             // バリデーションを実行してエラーがあったら新規登録のフォームに戻る
-            List<String> errors = TasklistValidator.validate(m);
+            List<String> errors = TaskValidator.validate(m);
             if(errors.size() > 0) {
                 em.close();
 
                 // フォームに初期値を設定、さらにエラーメッセージを送る
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("tasklist", m);
+                request.setAttribute("task", m);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasklist/new.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/task/new.jsp");
                 rd.forward(request, response);
             } else {
                 // データベースに保存

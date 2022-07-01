@@ -1,13 +1,14 @@
 package models.validators;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import models.Tasklist;
+import models.Task;
 
-public class TasklistValidator {
+public class TaskValidator {
     // バリデーションを実行する
-    public static List<String> validate(Tasklist m) {
+    public static List<String> validate(Task m) {
         List<String> errors = new ArrayList<String>();
 
         String content_error = validateContent(m.getContent());
@@ -21,7 +22,7 @@ public class TasklistValidator {
     // メッセージの必須入力チェック
     private static String validateContent(String content) {
         if (content == null || content.equals("")) {
-            return "メッセージを入力してください。";
+            return "投稿内容を入力してください。";
         }
 
         return "";
